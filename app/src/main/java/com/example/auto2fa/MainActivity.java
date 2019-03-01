@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     // RECEIVER VARIABLES
@@ -66,17 +67,17 @@ public class MainActivity extends AppCompatActivity {
         // TODO: START LISTENER
         NotificationListener listener = new NotificationListener();
 
-        // attempt to activate notifcations
-        Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-        startActivity(intent);
+        // ask user for notification permissions if necessary
+        boolean canAccessNotifications = isNotificationAccessEnabled();
+        if (!canAccessNotifications) {
+            Log.i(TAG,"Requesting notification access");
+            Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+            startActivity(intent);
+        } else {
+            Log.i(TAG,"Can already access notifications: " + Boolean.toString(canAccessNotifications));
+            Toast.makeText(getApplicationContext(), "I have notification access", Toast.LENGTH_SHORT).show();
+        }
 
-        boolean hi = checkNotificationEnabled();
-        Log.i(TAG,"**********  onNotificationPosted" + Boolean.toString(hi));
-        /*
-        nReceiver = new NotificationReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction("com.kpbird.nlsexample.NOTIFICATION_LISTENER_EXAMPLE");
-        */
 
         // SEND NOTIFICATIONS
         button_notify = findViewById(R.id.notify);
@@ -89,16 +90,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //check notification access setting is enabled or not
-    public boolean checkNotificationEnabled() {
+    public boolean isNotificationAccessEnabled() {
         try{
-            if(Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                    "enabled_notification_listeners").contains(getApplicationContext().getPackageName()))
-            {
-                return true;
-            } else {
-                return false;
-            }
-
+            return Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                    "enabled_notification_listeners").contains(getApplicationContext().getPackageName());
         }catch(Exception e) {
             e.printStackTrace();
         }
@@ -108,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     class NotificationReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.i(TAG,"**********  onNotificationPosted");
+            Log.i(TAG,"**********  onReceive");
             /*String temp = intent.getStringExtra("notification_event") + "\n" + txtView.getText();
             txtView.setText(temp);*/
         }
