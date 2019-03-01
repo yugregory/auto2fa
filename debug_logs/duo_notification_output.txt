@@ -1,0 +1,40 @@
+2019-03-01 14:54:52.921 19152-19152/com.example.auto2fa I/NotificationListener: ********** onNotificationPosted **********
+2019-03-01 14:54:52.921 19152-19152/com.example.auto2fa I/NotificationListener: ID :-1667913465	tickerText: Login request: CAEN SSH login-course.engin.umich.edu	PackageName: com.duosecurity.duomobile
+2019-03-01 14:54:52.921 19152-19152/com.example.auto2fa I/NotificationListener: Actions: [android.app.Notification$Action@abdbb1c]
+2019-03-01 14:54:52.928 19152-19152/com.example.auto2fa I/NotificationListener: Bundle[{android.title=Duo Mobile, android.subText=null, android.showChronometer=false, android.icon=2131230921, android.text=Login request: CAEN SSH login-course.engin.umich.edu, android.progress=0, android.progressMax=0, android.appInfo=ApplicationInfo{5736325 com.duosecurity.duomobile}, notification.type.key=0, android.showWhen=true, android.largeIcon=android.graphics.Bitmap@df4acfa, android.infoText=null, android.wearable.EXTENSIONS=Bundle[mParcelledData.dataSize=316], android.progressIndeterminate=false, android.remoteInputHistory=null}]
+2019-03-01 14:54:52.942 19152-19152/com.example.auto2fa I/NotificationListener: actionIntent: PendingIntent{13e02ab: android.os.BinderProxy@1cf707e}
+2019-03-01 14:54:52.942 19152-19152/com.example.auto2fa I/NotificationListener: Action's remoteInputs: null
+2019-03-01 14:54:52.943 19152-19152/com.example.auto2fa I/NotificationListener: Action's remoteInputs: [Landroid.app.Notification$Action;@7796d08
+2019-03-01 14:54:52.946 19152-19152/com.example.auto2fa I/NotificationListener: num actions: 1
+2019-03-01 14:54:52.946 19152-19152/com.example.auto2fa I/NotificationListener: num actions: 0
+2019-03-01 14:54:53.091 19152-19152/com.example.auto2fa I/NotificationListener: ********** onNotificationPosted **********
+2019-03-01 14:54:53.091 19152-19152/com.example.auto2fa I/NotificationListener: ID :-1667913465	tickerText: Login request: CAEN SSH login-course.engin.umich.edu	PackageName: com.duosecurity.duomobile
+2019-03-01 14:54:53.091 19152-19152/com.example.auto2fa I/NotificationListener: Actions: [android.app.Notification$Action@1a6d520, android.app.Notification$Action@fb8aed9]
+2019-03-01 14:54:53.091 19152-19152/com.example.auto2fa I/NotificationListener: Bundle[{android.title=Duo Mobile, android.subText=null, android.showChronometer=false, android.icon=2131230921, android.text=Login request: CAEN SSH login-course.engin.umich.edu, android.progress=0, android.progressMax=0, android.appInfo=ApplicationInfo{bbec09e com.duosecurity.duomobile}, notification.type.key=1, android.showWhen=true, android.largeIcon=android.graphics.Bitmap@71c577f, android.infoText=null, android.wearable.EXTENSIONS=Bundle[mParcelledData.dataSize=548], android.progressIndeterminate=false, android.remoteInputHistory=null}]
+2019-03-01 14:54:53.109 19152-19152/com.example.auto2fa I/NotificationListener: actionIntent: PendingIntent{4f4234c: android.os.BinderProxy@92ece2}
+2019-03-01 14:54:53.109 19152-19152/com.example.auto2fa I/NotificationListener: Action's remoteInputs: null
+2019-03-01 14:54:53.109 19152-19152/com.example.auto2fa I/NotificationListener: Action's remoteInputs: null
+2019-03-01 14:54:53.109 19152-19152/com.example.auto2fa I/NotificationListener: Action's remoteInputs: [Landroid.app.Notification$Action;@77c5f95
+2019-03-01 14:54:53.112 19152-19152/com.example.auto2fa I/NotificationListener: num actions: 2
+2019-03-01 14:54:53.112 19152-19152/com.example.auto2fa I/NotificationListener: num actions: 0
+2019-03-01 14:54:54.360 19152-19152/com.example.auto2fa I/NotificationListener: ********** onNotificationPosted **********
+2019-03-01 14:54:54.360 19152-19152/com.example.auto2fa I/NotificationListener: ID :-1667913465	tickerText: Login request: CAEN SSH login-course.engin.umich.edu	PackageName: com.duosecurity.duomobile
+2019-03-01 14:54:54.360 19152-19152/com.example.auto2fa I/NotificationListener: Actions: [android.app.Notification$Action@3e62838, android.app.Notification$Action@c906011]
+2019-03-01 14:54:54.361 19152-19152/com.example.auto2fa I/NotificationListener: Bundle[{android.title=Login request: CAEN SSH login-course.engin.umich.edu, android.textLines=[Ljava.lang.CharSequence;@4e44576, android.subText=null, android.template=android.app.Notification$InboxStyle, android.showChronometer=false, android.icon=2131230921, android.text=Login request: CAEN SSH login-course.engin.umich.edu, android.progress=0, android.progressMax=0, android.appInfo=ApplicationInfo{19fb777 com.duosecurity.duomobile}, notification.type.key=1, android.showWhen=true, android.largeIcon=android.graphics.Bitmap@7f18fe4, android.infoText=null, android.wearable.EXTENSIONS=Bundle[mParcelledData.dataSize=548], android.progressIndeterminate=false, android.remoteInputHistory=null, android.title.big=Login request: CAEN SSH login-course.engin.umich.edu}]
+2019-03-01 14:54:54.397 19152-19152/com.example.auto2fa I/NotificationListener: actionIntent: PendingIntent{a09ec4d: android.os.BinderProxy@92ece2}
+2019-03-01 14:54:54.397 19152-19152/com.example.auto2fa I/NotificationListener: Action's remoteInputs: null
+2019-03-01 14:54:54.397 19152-19152/com.example.auto2fa I/NotificationListener: Action's remoteInputs: null
+2019-03-01 14:54:54.397 19152-19152/com.example.auto2fa I/NotificationListener: Action's remoteInputs: [Landroid.app.Notification$Action;@cc74302
+2019-03-01 14:54:54.399 19152-19152/com.example.auto2fa I/NotificationListener: num actions: 2
+2019-03-01 14:54:54.399 19152-19152/com.example.auto2fa I/NotificationListener: num actions: 0
+2019-03-01 14:54:54.882 19152-19152/com.example.auto2fa I/NotificationListener: ********** onNotificationPosted **********
+2019-03-01 14:54:54.882 19152-19152/com.example.auto2fa I/NotificationListener: ID :215642789	tickerText: null	PackageName: com.duosecurity.duomobile
+2019-03-01 14:54:54.882 19152-19152/com.example.auto2fa I/NotificationListener: Actions: null
+2019-03-01 14:54:54.882 19152-19152/com.example.auto2fa I/NotificationListener: Bundle[{android.title=Login request: CAEN SSH login-course.engin.umich.edu, android.subText=null, android.template=android.app.Notification$BigTextStyle, android.showChronometer=false, android.icon=2131230921, android.text=This request was invalid or has recently expired. If this problem persists, please contact your administrator.
+    
+    Affected Account:
+    University of Michigan, android.progress=0, android.progressMax=0, android.appInfo=ApplicationInfo{b29c650 com.duosecurity.duomobile}, android.showWhen=true, android.largeIcon=null, android.bigText=This request was invalid or has recently expired. If this problem persists, please contact your administrator.
+    
+    Affected Account:
+    University of Michigan, android.infoText=null, android.progressIndeterminate=false, android.remoteInputHistory=null}]
+2019-03-01 14:54:54.904 19152-19152/com.example.auto2fa I/NotificationListener: num actions: 0

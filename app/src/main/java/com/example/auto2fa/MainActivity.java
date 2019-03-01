@@ -100,6 +100,10 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    public void addDebugText(String text) {
+
+    }
+
     class NotificationReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
