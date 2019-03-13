@@ -80,18 +80,21 @@ public class MainActivity extends AppCompatActivity {
 
 
         // SEND NOTIFICATIONS
-        button_notify = findViewById(R.id.notify);
+        //button_notify = findViewById(R.id.notify);
+        /*
         button_notify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sendNotification();
             }
         });
+        */
     }
 
     //check notification access setting is enabled or not
     public boolean isNotificationAccessEnabled() {
         try{
+
             return Settings.Secure.getString(getApplicationContext().getContentResolver(),
                     "enabled_notification_listeners").contains(getApplicationContext().getPackageName());
         }catch(Exception e) {

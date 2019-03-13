@@ -29,7 +29,7 @@ public class NotificationListener extends NotificationListenerService{
         Log.i(TAG, n.extras.toString());
 
         if (notificationPackageName.equals(duoPackageName)) {
-            Util.toast(getApplicationContext(), "I got a duo notification");
+            //Util.toast(getApplicationContext(), "I got a duo notification");
             try {
                 if (n.actions != null && n.actions.length > 0) {
                     Log.i(TAG, "actionIntent: " + n.actions[0].actionIntent.toString());

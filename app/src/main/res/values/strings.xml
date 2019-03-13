@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Auto2fa</string>
+    <string name="notification_access_instructions">In order to automatically accept two-factor authentication request notifications, auto2fa needs access to your notifications. Press "Grant Notification Access" to proceed. Once enabled, you\'re all set and may close the app.</string>
 </resources>
