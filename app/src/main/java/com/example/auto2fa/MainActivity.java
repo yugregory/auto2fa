@@ -13,20 +13,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Button;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     // RECEIVER VARIABLES
     private NotificationReceiver nReceiver;
+
     private String TAG = this.getClass().getSimpleName();
+    private TextView notificationAccessInstructionsTextView;
+    private Button notificationAccessButton;
+    private TextView noActionRequiredTextView;
+
 
     // CREATION OF NOTIFICATION BUTTON VARIABLES
-    private Button button_notify;
-    private static final String PRIMARY_CHANNEL_ID = "primary_notification_channel";
-    private static final int NOTIFICATION_ID = 0;
-    private NotificationManager mNotifyManager;
+    //private Button button_notify;
+    //private static final String PRIMARY_CHANNEL_ID = "primary_notification_channel";
+    //private static final int NOTIFICATION_ID = 0;
+    //private NotificationManager mNotifyManager;
 
+    /*
     public void createNotificationChannel()
     {
         mNotifyManager = (NotificationManager)
@@ -43,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
             mNotifyManager.createNotificationChannel(notificationChannel);
         }
     }
+    */
 
+    /*
     private NotificationCompat.Builder getNotificationBuilder(){
         NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this, PRIMARY_CHANNEL_ID)
                 .setContentTitle("You've been notified!")
@@ -51,31 +60,41 @@ public class MainActivity extends AppCompatActivity {
                 .setSmallIcon(R.drawable.ic_launcher_background);
         return notifyBuilder;
     }
+    */
 
+    /*
     public void sendNotification() {
         NotificationCompat.Builder notifyBuilder = getNotificationBuilder();
         mNotifyManager.notify(NOTIFICATION_ID, notifyBuilder.build());
     }
+    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        createNotificationChannel();
+        //createNotificationChannel();
 
         // TODO: START LISTENER
         NotificationListener listener = new NotificationListener();
 
+        notificationAccessButton = findViewById(R.id.grantNotificationAccessButton);
+        notificationAccessInstructionsTextView = findViewById(R.id.getNotificationAccessInstructions);
+        noActionRequiredTextView = findViewById(R.id.noActionView);
+
         // ask user for notification permissions if necessary
         boolean canAccessNotifications = isNotificationAccessEnabled();
+
         if (!canAccessNotifications) {
             Log.i(TAG,"Requesting notification access");
-            Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-            startActivity(intent);
+            //Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+            //startActivity(intent);
+            showNoNotificationAccess();
         } else {
-            Log.i(TAG,"Can already access notifications: " + Boolean.toString(canAccessNotifications));
-            Toast.makeText(getApplicationContext(), "I have notification access", Toast.LENGTH_SHORT).show();
+            Log.i(TAG,"Can already access notifications");
+            showSetupComplete();
+            //Toast.makeText(getApplicationContext(), "I have notification access", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -91,10 +110,39 @@ public class MainActivity extends AppCompatActivity {
         */
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        boolean canAccessNotifications = isNotificationAccessEnabled();
+
+        if (!canAccessNotifications) {
+            Log.i(TAG,"Requesting notification access");
+            showNoNotificationAccess();
+        } else {
+            Log.i(TAG,"Can already access notifications");
+            showSetupComplete();
+        }
+    }
+
+    private void showNoNotificationAccess() {
+        notificationAccessInstructionsTextView.setVisibility(View.VISIBLE);
+        notificationAccessButton.setVisibility(View.VISIBLE);
+
+        noActionRequiredTextView.setVisibility(View.GONE);
+    }
+
+    private void showSetupComplete() {
+        noActionRequiredTextView.setVisibility(View.VISIBLE);
+
+        notificationAccessInstructionsTextView.setVisibility(View.GONE);
+        notificationAccessButton.setVisibility(View.GONE);
+    }
+
+
     //check notification access setting is enabled or not
     public boolean isNotificationAccessEnabled() {
         try{
-
             return Settings.Secure.getString(getApplicationContext().getContentResolver(),
                     "enabled_notification_listeners").contains(getApplicationContext().getPackageName());
         }catch(Exception e) {
@@ -103,9 +151,11 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    public void addDebugText(String text) {
-
+    public void getNotificationAccess(View view) {
+        Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+        startActivity(intent);
     }
+
 
     class NotificationReceiver extends BroadcastReceiver {
         @Override

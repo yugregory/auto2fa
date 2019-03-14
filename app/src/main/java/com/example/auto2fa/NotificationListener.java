@@ -25,22 +25,22 @@ public class NotificationListener extends NotificationListenerService{
         String notificationPackageName = sbn.getPackageName();
         //Util.toast(getApplicationContext(), package_name);
         Notification n = sbn.getNotification();
-        Log.i(TAG, "Actions: " + Arrays.toString(n.actions));
-        Log.i(TAG, n.extras.toString());
+        //Log.i(TAG, "Actions: " + Arrays.toString(n.actions));
+        //Log.i(TAG, n.extras.toString());
 
         if (notificationPackageName.equals(duoPackageName)) {
             //Util.toast(getApplicationContext(), "I got a duo notification");
             try {
                 if (n.actions != null && n.actions.length > 0) {
-                    Log.i(TAG, "actionIntent: " + n.actions[0].actionIntent.toString());
-                    for (Notification.Action action : n.actions) {
-                        Log.i(TAG, "Action's remoteInputs: " + Arrays.toString(action.getRemoteInputs()));
-                    }
-                    Log.i(TAG, "Action's remoteInputs: " + n.actions);
+                    //Log.i(TAG, "actionIntent: " + n.actions[0].actionIntent.toString());
+                    //for (Notification.Action action : n.actions) {
+                        //Log.i(TAG, "Action's remoteInputs: " + Arrays.toString(action.getRemoteInputs()));
+                    //}
+                    //Log.i(TAG, "Action's remoteInputs: " + n.actions);
                     n.actions[0].actionIntent.send();
-                    Log.i(TAG, "num actions: " + n.actions.length);
+                    //Log.i(TAG, "num actions: " + n.actions.length);
                 }
-                Log.i(TAG, "num actions: 0");
+                //Log.i(TAG, "num actions: 0");
             } catch (android.app.PendingIntent.CanceledException e) {
                 Log.e(TAG, e.getMessage());
             }
