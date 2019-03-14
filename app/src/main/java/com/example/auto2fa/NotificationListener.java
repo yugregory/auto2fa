@@ -19,17 +19,11 @@ public class NotificationListener extends NotificationListenerService{
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
-        //Log.i(TAG,"********** onNotificationPosted **********");
-        //Log.i(TAG,"ID :" + sbn.getId() + "\ttickerText: " + sbn.getNotification().tickerText + "\tPackageName: " + sbn.getPackageName());
 
         String notificationPackageName = sbn.getPackageName();
-        //Util.toast(getApplicationContext(), package_name);
         Notification n = sbn.getNotification();
-        //Log.i(TAG, "Actions: " + Arrays.toString(n.actions));
-        //Log.i(TAG, n.extras.toString());
 
         if (notificationPackageName.equals(duoPackageName)) {
-            //Util.toast(getApplicationContext(), "I got a duo notification");
             try {
                 if (n.actions != null && n.actions.length > 0) {
                     //Log.i(TAG, "actionIntent: " + n.actions[0].actionIntent.toString());
