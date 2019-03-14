@@ -19,8 +19,8 @@ public class NotificationListener extends NotificationListenerService{
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
-        Log.i(TAG,"********** onNotificationPosted **********");
-        Log.i(TAG,"ID :" + sbn.getId() + "\ttickerText: " + sbn.getNotification().tickerText + "\tPackageName: " + sbn.getPackageName());
+        //Log.i(TAG,"********** onNotificationPosted **********");
+        //Log.i(TAG,"ID :" + sbn.getId() + "\ttickerText: " + sbn.getNotification().tickerText + "\tPackageName: " + sbn.getPackageName());
 
         String notificationPackageName = sbn.getPackageName();
         //Util.toast(getApplicationContext(), package_name);
