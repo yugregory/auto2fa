@@ -1,21 +1,12 @@
 package com.example.auto2fa;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.graphics.Color;
 import android.provider.Settings;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
-//import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     // RECEIVER VARIABLES
@@ -92,15 +83,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /*
-    class NotificationReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.i(TAG,"**********  onReceive");
-            //String temp = intent.getStringExtra("notification_event") + "\n" + txtView.getText();
-            //txtView.setText(temp);
-        }
-    }
-    */
 
 }
