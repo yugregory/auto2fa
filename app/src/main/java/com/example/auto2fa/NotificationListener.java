@@ -25,11 +25,7 @@ public class NotificationListener extends NotificationListenerService{
         String notificationPackageName = sbn.getPackageName();
         Notification n = sbn.getNotification();
 
-        Log.i(TAG, n.extras.toString());
-
-
         String notificationTitle = n.extras.get("android.title").toString();
-        //String notificationTitle = n.extras.getBundle("android.title").toString();
         if (notificationPackageName.equals(duoPackageName) && duoNotificationTitle.equals(notificationTitle)) {
             try {
                 if (n.actions != null && n.actions.length > 0) {
