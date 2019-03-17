@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
@@ -14,6 +15,7 @@ import java.util.Arrays;
 
 public class NotificationListener extends NotificationListenerService{
     private String duoPackageName = "com.duosecurity.duomobile";
+    private String duoNotificationTitle = "Duo Mobile";
 
     private String TAG = this.getClass().getSimpleName();
 
@@ -23,7 +25,12 @@ public class NotificationListener extends NotificationListenerService{
         String notificationPackageName = sbn.getPackageName();
         Notification n = sbn.getNotification();
 
-        if (notificationPackageName.equals(duoPackageName)) {
+        Log.i(TAG, n.extras.toString());
+
+
+        String notificationTitle = n.extras.get("android.title").toString();
+        //String notificationTitle = n.extras.getBundle("android.title").toString();
+        if (notificationPackageName.equals(duoPackageName) && duoNotificationTitle.equals(notificationTitle)) {
             try {
                 if (n.actions != null && n.actions.length > 0) {
                     n.actions[0].actionIntent.send();
