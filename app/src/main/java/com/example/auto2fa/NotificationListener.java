@@ -25,14 +25,16 @@ public class NotificationListener extends NotificationListenerService{
         String notificationPackageName = sbn.getPackageName();
         Notification n = sbn.getNotification();
 
-        String notificationTitle = n.extras.get("android.title").toString();
-        if (notificationPackageName.equals(duoPackageName) && duoNotificationTitle.equals(notificationTitle)) {
-            try {
-                if (n.actions != null && n.actions.length > 0) {
-                    n.actions[0].actionIntent.send();
+        if (n.extras.containsKey("android.title")) {
+            String notificationTitle = n.extras.get("android.title").toString();
+            if (notificationPackageName.equals(duoPackageName) && duoNotificationTitle.equals(notificationTitle)) {
+                try {
+                    if (n.actions != null && n.actions.length > 0) {
+                        n.actions[0].actionIntent.send();
+                    }
+                } catch (android.app.PendingIntent.CanceledException e) {
+                    //Log.e(TAG, e.getMessage());
                 }
-            } catch (android.app.PendingIntent.CanceledException e) {
-                //Log.e(TAG, e.getMessage());
             }
         }
 
