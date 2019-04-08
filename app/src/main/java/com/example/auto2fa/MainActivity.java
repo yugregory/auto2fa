@@ -5,8 +5,10 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Button;
+import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
     // RECEIVER VARIABLES
@@ -15,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = this.getClass().getSimpleName();
     private TextView notificationAccessInstructionsTextView;
     private Button notificationAccessButton;
+    private Button toggleButton;
     private TextView noActionRequiredTextView;
 
     @Override
@@ -22,11 +25,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        NotificationListener listener = new NotificationListener();
+        final NotificationListener listener = new NotificationListener();
 
         notificationAccessButton = findViewById(R.id.grantNotificationAccessButton);
         notificationAccessInstructionsTextView = findViewById(R.id.getNotificationAccessInstructions);
         noActionRequiredTextView = findViewById(R.id.noActionView);
+        toggleButton = findViewById(R.id.toggleButton);
+
+        ToggleButton toggle = (ToggleButton) toggleButton;
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    listener.setChecker(true);
+                } else {
+                    listener.setChecker(false);
+                }
+            }
+        });
 
         // ask user for notification permissions if necessary
         boolean canAccessNotifications = isNotificationAccessEnabled();
@@ -36,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             showSetupComplete();
         }
-
     }
 
 
@@ -56,12 +70,13 @@ public class MainActivity extends AppCompatActivity {
         notificationAccessInstructionsTextView.setVisibility(View.VISIBLE);
         notificationAccessButton.setVisibility(View.VISIBLE);
 
+        toggleButton.setVisibility(View.GONE);
         noActionRequiredTextView.setVisibility(View.GONE);
     }
 
     private void showSetupComplete() {
-        noActionRequiredTextView.setVisibility(View.VISIBLE);
-
+        // noActionRequiredTextView.setVisibility(View.VISIBLE);
+        toggleButton.setVisibility(View.VISIBLE);
         notificationAccessInstructionsTextView.setVisibility(View.GONE);
         notificationAccessButton.setVisibility(View.GONE);
     }
