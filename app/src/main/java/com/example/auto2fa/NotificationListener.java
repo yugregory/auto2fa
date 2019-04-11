@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
@@ -29,6 +30,7 @@ public class NotificationListener extends NotificationListenerService {
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
+        Log.d(TAG, "in onNotificationPosted");
         if (checker) {
             Log.d(TAG, "hello");
             String notificationPackageName = sbn.getPackageName();
