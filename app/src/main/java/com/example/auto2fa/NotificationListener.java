@@ -21,7 +21,7 @@ public class NotificationListener extends NotificationListenerService {
     private String duoNotificationTitle = "Duo Mobile";
 
     private String TAG = this.getClass().getSimpleName();
-    private boolean checker = false;
+    static private boolean checker;
 
     public void setChecker(boolean value) {
         checker = value;
@@ -31,7 +31,8 @@ public class NotificationListener extends NotificationListenerService {
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
         Log.d(TAG, "in onNotificationPosted");
-        if (checker) {
+        Log.d(TAG, "checker is: " + checker);
+        if (checker == true) {
             Log.d(TAG, "hello");
             String notificationPackageName = sbn.getPackageName();
             Notification n = sbn.getNotification();

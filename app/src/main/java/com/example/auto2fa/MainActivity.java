@@ -1,8 +1,13 @@
 package com.example.auto2fa;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.NotificationCompat;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -19,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button notificationAccessButton;
     private Button toggleButton;
     private TextView noActionRequiredTextView;
+    private TextView toggleText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         notificationAccessInstructionsTextView = findViewById(R.id.getNotificationAccessInstructions);
         noActionRequiredTextView = findViewById(R.id.noActionView);
         toggleButton = findViewById(R.id.toggleButton);
+        toggleText = findViewById(R.id.toggleText);
 
         ToggleButton toggle = (ToggleButton) toggleButton;
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -71,12 +78,14 @@ public class MainActivity extends AppCompatActivity {
         notificationAccessButton.setVisibility(View.VISIBLE);
 
         toggleButton.setVisibility(View.GONE);
+        toggleText.setVisibility(View.GONE);
         noActionRequiredTextView.setVisibility(View.GONE);
     }
 
     private void showSetupComplete() {
         // noActionRequiredTextView.setVisibility(View.VISIBLE);
         toggleButton.setVisibility(View.VISIBLE);
+        toggleText.setVisibility(View.VISIBLE);
         notificationAccessInstructionsTextView.setVisibility(View.GONE);
         notificationAccessButton.setVisibility(View.GONE);
     }
@@ -98,5 +107,38 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void sendNotification(View view) {
+
+        //Get an instance of NotificationManager//
+        String CHANNEL_ID = "HI";
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_DEFAULT);
+
+        // Configure the notification channel.
+        notificationChannel.setDescription("Channel description");
+        notificationChannel.enableLights(true);
+        notificationChannel.setLightColor(Color.RED);
+        notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
+        notificationChannel.enableVibration(true);
+        notificationManager.createNotificationChannel(notificationChannel);
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID);
+        mBuilder.setSmallIcon(R.drawable.ic_launcher_foreground);
+        mBuilder.setContentTitle("My notification");
+        mBuilder.setContentText("Hello World!");
+
+
+        // When you issue multiple notifications about the same type of event,
+        // it’s best practice for your app to try to update an existing notification
+        // with this new information, rather than immediately creating a new notification.
+        // If you want to update this notification at a later date, you need to assign it an ID.
+        // You can then use this ID whenever you issue a subsequent notification.
+        // If the previous notification is still visible, the system will update this existing notification,
+        // rather than create a new one. In this example, the notification’s ID is 001//
+
+
+        notificationManager.notify(2, mBuilder.build());
+    }
 
 }
