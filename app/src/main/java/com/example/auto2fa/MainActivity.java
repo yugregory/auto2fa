@@ -4,6 +4,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Button toggleButton;
     private TextView noActionRequiredTextView;
     private TextView toggleText;
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +40,28 @@ public class MainActivity extends AppCompatActivity {
         noActionRequiredTextView = findViewById(R.id.noActionView);
         toggleButton = findViewById(R.id.toggleButton);
         toggleText = findViewById(R.id.toggleText);
-
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("TogglePref", 0);
         ToggleButton toggle = (ToggleButton) toggleButton;
+
+        final SharedPreferences.Editor editor = sharedPref.edit();
+
+        if (sharedPref.getBoolean("isChecked", false)){
+            toggle.setChecked(true);
+        } else {
+            toggle.setChecked(false);
+        }
+
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     listener.setChecker(true);
+                    editor.putBoolean("isChecked", true);
+                    editor.commit();
+
                 } else {
                     listener.setChecker(false);
+                    editor.putBoolean("isChecked", false);
+                    editor.commit();
                 }
             }
         });
