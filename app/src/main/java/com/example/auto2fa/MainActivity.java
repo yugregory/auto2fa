@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.widget.ToggleButton;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
     // RECEIVER VARIABLES
     //private NotificationReceiver nReceiver;
@@ -25,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private Button notificationAccessButton;
     private Button toggleButton;
     private TextView noActionRequiredTextView;
-    private TextView toggleText;
+    private TextView offText;
+    private TextView onText;
     private SharedPreferences sharedPref;
 
     @Override
@@ -39,26 +42,35 @@ public class MainActivity extends AppCompatActivity {
         notificationAccessInstructionsTextView = findViewById(R.id.getNotificationAccessInstructions);
         noActionRequiredTextView = findViewById(R.id.noActionView);
         toggleButton = findViewById(R.id.toggleButton);
-        toggleText = findViewById(R.id.toggleText);
+        offText = findViewById(R.id.offText);
+        onText = findViewById(R.id.onText);
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("TogglePref", 0);
         ToggleButton toggle = (ToggleButton) toggleButton;
 
         final SharedPreferences.Editor editor = sharedPref.edit();
 
+        offText.setVisibility(View.GONE);
+        onText.setVisibility(View.GONE);
         if (sharedPref.getBoolean("isChecked", false)){
             toggle.setChecked(true);
+            onText.setVisibility(View.VISIBLE);
         } else {
             toggle.setChecked(false);
+            offText.setVisibility(View.VISIBLE);
         }
 
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    offText.setVisibility(View.GONE);
+                    onText.setVisibility(View.VISIBLE);
                     listener.setChecker(true);
                     editor.putBoolean("isChecked", true);
                     editor.commit();
 
                 } else {
+                    onText.setVisibility(View.GONE);
+                    offText.setVisibility(View.VISIBLE);
                     listener.setChecker(false);
                     editor.putBoolean("isChecked", false);
                     editor.commit();
@@ -94,14 +106,14 @@ public class MainActivity extends AppCompatActivity {
         notificationAccessButton.setVisibility(View.VISIBLE);
 
         toggleButton.setVisibility(View.GONE);
-        toggleText.setVisibility(View.GONE);
+        offText.setVisibility(View.GONE);
+        onText.setVisibility(View.GONE);
         noActionRequiredTextView.setVisibility(View.GONE);
     }
 
     private void showSetupComplete() {
         // noActionRequiredTextView.setVisibility(View.VISIBLE);
         toggleButton.setVisibility(View.VISIBLE);
-        toggleText.setVisibility(View.VISIBLE);
         notificationAccessInstructionsTextView.setVisibility(View.GONE);
         notificationAccessButton.setVisibility(View.GONE);
     }
@@ -123,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /*
     public void sendNotification(View view) {
 
         //Get an instance of NotificationManager//
@@ -156,5 +169,5 @@ public class MainActivity extends AppCompatActivity {
 
         notificationManager.notify(2, mBuilder.build());
     }
-
+    */
 }
