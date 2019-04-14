@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
     private void showSetupComplete() {
         // noActionRequiredTextView.setVisibility(View.VISIBLE);
         toggleButton.setVisibility(View.VISIBLE);
+        offText.setVisibility(View.VISIBLE);
         notificationAccessInstructionsTextView.setVisibility(View.GONE);
         notificationAccessButton.setVisibility(View.GONE);
     }
