@@ -51,11 +51,19 @@ public class MainActivity extends AppCompatActivity {
 
         offText.setVisibility(View.GONE);
         onText.setVisibility(View.GONE);
+
+        if (!sharedPref.contains("isChecked")){
+            editor.putBoolean("isChecked", true);
+            editor.commit();
+        }
+
         if (sharedPref.getBoolean("isChecked", false)){
             toggle.setChecked(true);
+            offText.setVisibility(View.GONE);
             onText.setVisibility(View.VISIBLE);
         } else {
             toggle.setChecked(false);
+            onText.setVisibility(View.GONE);
             offText.setVisibility(View.VISIBLE);
         }
 
