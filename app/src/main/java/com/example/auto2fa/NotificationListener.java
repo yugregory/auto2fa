@@ -21,19 +21,23 @@ public class NotificationListener extends NotificationListenerService {
     private String duoNotificationTitle = "Duo Mobile";
 
     private String TAG = this.getClass().getSimpleName();
-    static private boolean checker;
+    static private boolean checker = true;
 
     public void setChecker(boolean value) {
         checker = value;
-        Log.d(TAG, "checker has been changed to: " + value);
+        Log.d(TAG, "*****checker has been changed to: " + value);
+    }
+
+    public boolean getChecker() {
+        return checker;
     }
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
-        Log.d(TAG, "in onNotificationPosted");
-        Log.d(TAG, "checker is: " + checker);
+        Log.d(TAG, "*****in onNotificationPosted");
+        Log.d(TAG, "*****checker is: " + checker);
         if (checker == true) {
-            Log.d(TAG, "hello");
+            Log.d(TAG, "*****hello");
             String notificationPackageName = sbn.getPackageName();
             Notification n = sbn.getNotification();
 

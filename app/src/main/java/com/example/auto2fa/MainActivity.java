@@ -10,6 +10,7 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.NotificationCompat;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -44,24 +45,30 @@ public class MainActivity extends AppCompatActivity {
         toggleButton = findViewById(R.id.toggleButton);
         offText = findViewById(R.id.offText);
         onText = findViewById(R.id.onText);
-        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("TogglePref", 0);
+        sharedPref = getApplicationContext().getSharedPreferences("TogglePref", 0);
         ToggleButton toggle = (ToggleButton) toggleButton;
 
         final SharedPreferences.Editor editor = sharedPref.edit();
 
-        offText.setVisibility(View.GONE);
-        onText.setVisibility(View.GONE);
+        //offText.setVisibility(View.GONE);
+        //onText.setVisibility(View.GONE);
 
+        /*
         if (!sharedPref.contains("isChecked")){
+            Log.d(TAG, "*****init set to true");
+            toggle.setChecked(true);
             editor.putBoolean("isChecked", true);
             editor.commit();
         }
+        */
 
-        if (sharedPref.getBoolean("isChecked", false)){
+        if (sharedPref.getBoolean("isChecked", true)){
+            Log.d(TAG, "*****init set to true");
             toggle.setChecked(true);
             offText.setVisibility(View.GONE);
             onText.setVisibility(View.VISIBLE);
         } else {
+            Log.d(TAG, "*****init set to false");
             toggle.setChecked(false);
             onText.setVisibility(View.GONE);
             offText.setVisibility(View.VISIBLE);
@@ -70,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    Log.d(TAG, "*****listener setting it to true");
                     offText.setVisibility(View.GONE);
                     onText.setVisibility(View.VISIBLE);
                     listener.setChecker(true);
@@ -77,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.commit();
 
                 } else {
+                    Log.d(TAG, "*****listener setting it to false");
                     onText.setVisibility(View.GONE);
                     offText.setVisibility(View.VISIBLE);
                     listener.setChecker(false);
@@ -122,7 +131,13 @@ public class MainActivity extends AppCompatActivity {
     private void showSetupComplete() {
         // noActionRequiredTextView.setVisibility(View.VISIBLE);
         toggleButton.setVisibility(View.VISIBLE);
-        offText.setVisibility(View.VISIBLE);
+        if (sharedPref.getBoolean("isChecked", true)){
+            offText.setVisibility(View.GONE);
+            onText.setVisibility(View.VISIBLE);
+        } else {
+            onText.setVisibility(View.GONE);
+            offText.setVisibility(View.VISIBLE);
+        }
         notificationAccessInstructionsTextView.setVisibility(View.GONE);
         notificationAccessButton.setVisibility(View.GONE);
     }
